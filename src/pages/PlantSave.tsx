@@ -73,65 +73,70 @@ export function PlantSave(){
     }
 
     return(
-        <View style={styles.container}>
-            <View style={styles.plantInfo}>
-                <SvgFromUri
-                uri={plant.photo}
-                width={150}
-                height={150}
-                />
-                <Text style={styles.plantName}>
-                    {plant.name}
-                </Text>
-                <Text style={styles.plantAbout}>
-                    {plant.about}
-                </Text>
-            </View>
-
-            <View style={styles.controller}>
-                <View style={styles.tipContainer}>
-                    <Image
-                        source={waterdrop} 
-                        style={styles.tipImage}
-                        />
-                    <Text style={styles.tipText}>
-                        {plant.water_tips}
+        <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollListContainer}
+        >
+            <View style={styles.container}>
+                <View style={styles.plantInfo}>
+                    <SvgFromUri
+                    uri={plant.photo}
+                    width={150}
+                    height={150}
+                    />
+                    <Text style={styles.plantName}>
+                        {plant.name}
+                    </Text>
+                    <Text style={styles.plantAbout}>
+                        {plant.about}
                     </Text>
                 </View>
 
-                <Text style={styles.alertLabel}>
-                    Escolha o melhor horário para ser lembrado
-                </Text>
+                <View style={styles.controller}>
+                    <View style={styles.tipContainer}>
+                        <Image
+                            source={waterdrop} 
+                            style={styles.tipImage}
+                            />
+                        <Text style={styles.tipText}>
+                            {plant.water_tips}
+                        </Text>
+                    </View>
 
-                {showDatePicker &&
-                    (<DateTimePicker
-                    value={selectedDateTime}
-                    mode="time"
-                    display="spinner"
-                    onChange={handleChangeTime}
-                    />
-                )}
+                    <Text style={styles.alertLabel}>
+                        Escolha o melhor horário para ser lembrado
+                    </Text>
 
-                {
-                    Platform.OS === 'android' && (
-                        <TouchableOpacity
-                        style={styles.dateTImePickerButton}
-                        onPress={handleOpenDatetimePickerForAndroid}
-                        >
-                            <Text style={styles.dateTimePickerText}>
-                                {`Mudar ${format(selectedDateTime, 'HH:mm')}`}
-                            </Text>
-                        </TouchableOpacity>
-                    )
-                }
+                    {showDatePicker &&
+                        (<DateTimePicker
+                        value={selectedDateTime}
+                        mode="time"
+                        display="spinner"
+                        onChange={handleChangeTime}
+                        />
+                    )}
 
-                <Button
-                title="Cadastrar planta"
-                onPress={handleSave}
-                ></Button>
+                    {
+                        Platform.OS === 'android' && (
+                            <TouchableOpacity
+                            style={styles.dateTImePickerButton}
+                            onPress={handleOpenDatetimePickerForAndroid}
+                            >
+                                <Text style={styles.dateTimePickerText}>
+                                    {`Mudar ${format(selectedDateTime, 'HH:mm')}`}
+                                </Text>
+                            </TouchableOpacity>
+                        )
+                    }
 
+                    <Button
+                    title="Cadastrar planta"
+                    onPress={handleSave}
+                    ></Button>
+
+                </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -206,6 +211,11 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         paddingVertical: 40
+    },
+    scrollListContainer: {
+        flexGrow: 1,
+        justifyContent: 'space-between',
+        backgroundColor: colors.shape
     }
 
 })

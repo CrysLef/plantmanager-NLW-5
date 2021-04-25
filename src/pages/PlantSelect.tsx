@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-nativ
 import { EnviromentButton } from '../components/EnviromentButton';
 
 import { Header } from '../components/Header';
-import { PlantCardPrymary } from '../components/PlantCardPrimsry';
+import { PlantCardPrimary } from '../components/PlantCardPrimary';
 import { Load } from '../components/Load';
 import { useNavigation } from '@react-navigation/core';
 
@@ -133,7 +133,7 @@ export function PlantSelect(){
                 data={filteredPlants}
                 keyExtractor={(item) => String(item.id)}
                 renderItem={( { item } ) => (
-                    <PlantCardPrymary 
+                    <PlantCardPrimary 
                     data={item}
                     onPress={() => handlePlantSelect(item)}
                     />

@@ -2,7 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import colors from '../styles/colors';
-import { color } from 'react-native-reanimated';
+import { Platform } from 'react-native';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { PlantSelect } from '../pages/PlantSelect';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MyPlants } from '../pages/MyPlants';
@@ -17,8 +18,9 @@ const AuthRoutes = () => {
             inactiveTintColor: colors.heading,
             labelPosition: 'beside-icon',
             style: {
-                paddingVertical: 1,
-                height: 80
+                paddingVertical: Platform.OS === 'ios' ? getBottomSpace() : 5,
+                paddingBottom: Platform.OS === 'android' ? 5 : 0,
+                height: 60
             }
         }}>
             <AppTab.Screen
